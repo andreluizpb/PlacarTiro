@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Placar</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <h3 align="center">Restultado final da partida número #{placar.numeroPartida}</h3>
+                    <h3 align="center">realizada em  #{placar.dataPartida}</h3>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Desenvolvido por André Luiz
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="250" header="Bônus" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Estatísticas">
+                            <p:menuitem value="Arma preferida do vencedor" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Maior sequência sem morrer" url="http://www.primefaces.org/documentation.html" />
+                            <p:menuitem value="Vencedores sem morrer" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Jogadores Awards" url="http://www.primefaces.org/themes.html" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    
+                    <p:dataList value="#{placar.listaAssassinatos}" var="assass">
+                        <f:facet name="header">
+                            Jogadas
+                        </f:facet>
+                        Assassino: #{assass.assassino} - Morto: #{assass.morto} - Arma: #{assass.arma}
+                    </p:dataList>
+
+                    <p:dataList value="#{placar.listaJogadores}" var="jogador">
+                        <f:facet name="header">
+                            Placar do Jogo
+                        </f:facet>
+                        Jogador: #{jogador.nome} - Assassinatos: #{jogador.assassinatos} - Mortes: #{jogador.mortes}
+                    </p:dataList>
+
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
