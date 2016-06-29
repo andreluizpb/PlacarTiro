@@ -1,14 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Placar Jogo de Tiro</title>
     </h:head>
     <h:body>
-        <h2 align="center">Olá!! Após o final emocionante, já temos o resultado do jogo de tiro!</h2>
-        <br />
-        <span style="align-items: center"><h:link outcome="placar" value="Acesse a página do placar" /></span>
+        
+        <p:layout fullPage="true">
+            <p:layoutUnit position="center">
+                <h3 align="center">Olá!! Após o final emocionante, já temos o resultado do jogo de tiro!</h3>
+                <h3 align="center"><h:link outcome="placar" value="Acesse a página do placar" /></h3>
+            </p:layoutUnit>
+        </p:layout>
+
     </h:body>
 </html>
 

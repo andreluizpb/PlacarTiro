@@ -19,10 +19,10 @@ import javax.faces.bean.ManagedProperty;
  */
 @ManagedBean(name = "placar")
 @ApplicationScoped
-public class BeanPlacar {
+public final class BeanPlacar {
     
     private List<String> listaLog = new ArrayList<>();
-    private List<BeanAssassinato> listaAssassinatos  = new ArrayList<>();
+    private List<BeanAssassinato> listaAssassinatos;
     private List<BeanJogador> listaJogadores  = new ArrayList<>();
     private List<String> jogadores  = new ArrayList<>();
     private String numeroPartida = "";
@@ -33,8 +33,13 @@ public class BeanPlacar {
         this.listaLog.add("23/04/2013 15:34:22 - New match 11348965 has started");
         this.listaLog.add("23/04/2013 15:36:04 - Roman killed Nick using M16");
         this.listaLog.add("23/04/2013 15:36:33 - <WORLD> killed Nick by DROWN");
-        this.listaLog.add("23/04/2013 15:39:22 - Match 11348965 has ended");
-
+        this.listaLog.add("23/04/2013 15:39:22 - Match 11348965 has ended"); 
+        
+        geraPlacar();
+    }
+    
+    public void geraPlacar(){
+        listaAssassinatos  = new ArrayList<>();
         for(String log : listaLog){
             BeanAssassinato assassinato = new BeanAssassinato();
             if(log.contains("killed")){
@@ -79,13 +84,13 @@ public class BeanPlacar {
         }
     }
 
-    private String numPartida (String log){
-        int inicio = log.indexOf("match") + 7;
+    public String numPartida (String log) {
+        int inicio = log.indexOf("match") + 6;
         int fim = log.indexOf("has") - 1;
         return log.substring(inicio, fim);
     }
     
-    private String dtPartida (String log){
+    public String dtPartida (String log){
         return log.substring(0, 10);
     }
     
@@ -96,10 +101,10 @@ public class BeanPlacar {
     }
     
     private String nomeMorto (String log){
-            int inicio = log.indexOf("killed") + 7;
-            String identificador = log.contains("using") ? "using" : "by";
-            int fim = log.indexOf(identificador) - 1;;
-            return log.substring(inicio, fim);
+        int inicio = log.indexOf("killed") + 7;
+        String identificador = log.contains("using") ? "using" : "by";
+        int fim = log.indexOf(identificador) - 1;;
+        return log.substring(inicio, fim);
     }
     
     private String nomeArma (String log){
